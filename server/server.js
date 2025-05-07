@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const sleepRoutes = require('./routes/sleepRoutes');
+const authRoutes = require('./routes/authRoutes');
 const connectDB = require('./config/db');
 const errorHandler = require('./middleware/errorHandler');
 const notFound = require('./middleware/notFound');
@@ -17,8 +18,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.use('/api/auth', authRoutes);
+
 // Routes
 app.use('/api/sleep', sleepRoutes);
+
 
 // Error handling and Not Found middleware
 app.use(errorHandler);
